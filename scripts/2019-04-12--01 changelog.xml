@@ -1,0 +1,453 @@
+<databasechangelog 
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemalocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+  <changeset id="1" author="george" runonchange="true"> 
+	<createtable tablename="customer"> 
+      <column name="customer_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="first_name" type="CHAR(50)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="last_name" type="CHAR(50)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="phone" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+	  <column name="city" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="address" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="zip" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="bank_inf" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="customer"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="2" author="george" runonchange="true"> 
+	<createtable tablename="order"> 
+      <column name="order_number" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="customer_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="order_date" type="DATE"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="shipment_date" type="DATE"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="order"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="3" author="george" runonchange="true"> 
+	<createtable tablename="order_detail"> 
+      <column name="id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="order_number" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="product_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="quantity" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+	  <column name="order_price" type="MONEY"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+	  <column name="special_offer_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="order_detail"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="4" author="george" runonchange="true"> 
+	<createtable tablename="product"> 
+      <column name="product_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="product_name" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="product_type" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="product_price" type="MONEY"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column>
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="product"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="5" author="george" runonchange="true"> 
+	<createtable tablename="special_offer"> 
+      <column name="special_offer_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="special_offer_name" type="CHAR(50)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="discount" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="special_offer"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="6" author="george" runonchange="true"> 
+	<createtable tablename="product_in_shipment"> 
+      <column name="id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="shipment_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="quantity" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="product_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="order_number" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="product_in_shipment"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="7" author="george" runonchange="true"> 
+	<createtable tablename="product_in_movement"> 
+      <column name="id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="quantity" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="product_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="invoice_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="product_in_movement"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="8" author="george" runonchange="true"> 
+	<createtable tablename="invoice"> 
+      <column name="invoice_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="movement_date" type="DATE"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="original_storage_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="final_storage_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="invoice"/>
+    </rollback>
+  </changeset>
+  
+  <changeset id="9" author="george" runonchange="true"> 
+	<createtable tablename="storage"> 
+      <column name="storage_id" type="INTEGER"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+      <column name="storage_name" type="CHAR(50)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="city" type="CHAR(50)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+	  <column name="address" type="CHAR(100)"> 
+        <constraints nullable="false"> 
+        </constraints>
+      </column> 
+    </createtable>
+	
+	<rollback>
+        <dropTable tableName="storage"/>
+    </rollback>
+  </changeset>
+  
+  
+  
+  
+  <changeSet id="10" author="george">
+    <addPrimaryKey tableName="customer" columnNames="customer_id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="customer"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet id="11" author="george">
+    <addPrimaryKey tableName="order" columnNames="order_number" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="order"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="12" author="george">
+    <addPrimaryKey tableName="order_detail" columnNames="id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="order_detail"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="13" author="george">
+    <addPrimaryKey tableName="product" columnNames="product_id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="product"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="14" author="george">
+    <addPrimaryKey tableName="special_offer" columnNames="special_offer_id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="special_offer"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="15" author="george">
+    <addPrimaryKey tableName="product_in_shipment" columnNames="id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="product_in_shipment"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="16" author="george">
+    <addPrimaryKey tableName="product_in_movement" columnNames="id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="product_in_movement"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="17" author="george">
+    <addPrimaryKey tableName="invoice" columnNames="invoice_id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="invoice"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="18" author="george">
+    <addPrimaryKey tableName="storage" columnNames="storage_id" />
+	
+	<rollback>
+        <dropPrimaryKey tableName="storage"/>
+    </rollback>
+  </changeSet>
+  
+  
+  
+  
+  <changeSet id="19" author="george">
+    <addForeignKeyConstraint baseColumnNames="customer_id"
+            baseTableName="order"
+            constraintName="order_customer_fk"
+            referencedColumnNames="customer_id"
+            referencedTableName="customer"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="order" constraintName="order_customer_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="20" author="george">
+    <addForeignKeyConstraint baseColumnNames="product_id"
+            baseTableName="order_detail"
+            constraintName="order_detail_product_fk"
+            referencedColumnNames="product_id"
+            referencedTableName="product"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_product_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="21" author="george">
+    <addForeignKeyConstraint baseColumnNames="order_number"
+            baseTableName="order_detail"
+            constraintName="order_detail_order_fk"
+            referencedColumnNames="order_number"
+            referencedTableName="order"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_order_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="22" author="george">
+    <addForeignKeyConstraint baseColumnNames="special_offer_id"
+            baseTableName="order_detail"
+            constraintName="order_detail_special_offer_fk"
+            referencedColumnNames="special_offer_id"
+            referencedTableName="special_offer"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_special_offer_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="23" author="george">
+    <addForeignKeyConstraint baseColumnNames="product_id"
+            baseTableName="product_in_shipment"
+            constraintName="product_in_shipment_product_fk"
+            referencedColumnNames="product_id"
+            referencedTableName="product"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="product_in_shipment" constraintName="product_in_shipment_product_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="24" author="george">
+    <addForeignKeyConstraint baseColumnNames="order_number"
+            baseTableName="product_in_shipment"
+            constraintName="product_in_shipment_order_fk"
+            referencedColumnNames="order_number"
+            referencedTableName="order"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="product_in_shipment" constraintName="product_in_shipment_order_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="25" author="george">
+    <addForeignKeyConstraint baseColumnNames="product_id"
+            baseTableName="product_in_movement"
+            constraintName="product_in_movement_product_fk"
+            referencedColumnNames="product_id"
+            referencedTableName="product"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="product_in_movement" constraintName="product_in_movement_product_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="26" author="george">
+    <addForeignKeyConstraint baseColumnNames="invoice_id"
+            baseTableName="product_in_movement"
+            constraintName="product_in_movement_invoice_fk"
+            referencedColumnNames="invoice_id"
+            referencedTableName="invoice"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="product_in_movement" constraintName="product_in_movement_invoice_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="27" author="george">
+    <addForeignKeyConstraint baseColumnNames="original_storage_id"
+            baseTableName="invoice"
+            constraintName="invoice_storage_fk"
+            referencedColumnNames="storage_id"
+            referencedTableName="storage"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="invoice" constraintName="invoice_storage_fk"/>
+    </rollback>
+  </changeSet>
+  
+  <changeSet id="28" author="george">
+    <addForeignKeyConstraint baseColumnNames="final_storage_id"
+            baseTableName="invoice"
+            constraintName="invoice_storage_fkv2"
+            referencedColumnNames="storage_id"
+            referencedTableName="storage"/>
+			
+	<rollback>
+        <dropForeignKeyConstraint baseTableName="invoice" constraintName="invoice_storage_fkv2"/>
+    </rollback>
+  </changeSet>
+</databasechangelog>
