@@ -11,7 +11,7 @@
             </not>
         </preConditions>
         <createTable tableName="customer">
-            <column name="customer_id" type="INTEGER">
+            <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
             <column name="first_name" type="CHAR(50)">
@@ -75,9 +75,6 @@
             </not>
         </preConditions>
         <createTable tableName="order_detail">
-            <column name="order_detail" type="INTEGER">
-                <constraints nullable="false" />
-            </column>
             <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
@@ -96,9 +93,6 @@
             <column name="special_offer_id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="bank_inf" type="CHAR(100)">
-                <constraints nullable="false" />
-            </column>
         </createTable>
         
         <rollback>
@@ -113,16 +107,16 @@
             </not>
         </preConditions>
         <createTable tableName="product">
-            <column name="product_id" type="INTEGER">
+            <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="product_name" type="CHAR(100)">
+            <column name="name" type="CHAR(100)">
                 <constraints nullable="false" />
             </column>
-            <column name="product_type" type="CHAR(100)">
+            <column name="type" type="CHAR(100)">
                 <constraints nullable="false" />
             </column>
-            <column name="product_price" type="MONEY">
+            <column name="price" type="MONEY">
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -138,10 +132,10 @@
         </not>
     </preConditions>
         <createTable tableName="special_offer">
-            <column name="special_offer_id" type="INTEGER">
+            <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="special_offer_name" type="CHAR(50)">
+            <column name="name" type="CHAR(50)">
                 <constraints nullable="false" />
             </column>
             <column name="discount" type="INTEGER">
@@ -216,7 +210,7 @@
             </not>
         </preConditions>
         <createTable tableName="invoice">
-            <column name="invoice_id" type="INTEGER">
+            <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
             <column name="movement_date" type="DATE">
@@ -242,10 +236,10 @@
             </not>
         </preConditions>
         <createTable tableName="storage">
-            <column name="storage_id" type="INTEGER">
+            <column name="id" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="storage_name" type="CHAR(50)">
+            <column name="name" type="CHAR(50)">
                 <constraints nullable="false" />
             </column>
             <column name="city" type="CHAR(50)">
@@ -269,7 +263,7 @@
                 <primaryKeyExists tableName="customer" />
             </not>
         </preConditions>
-        <addPrimaryKey tableName="customer" columnNames="customer_id" />
+        <addPrimaryKey tableName="customer" columnNames="id" />
         
         <rollback>
             <dropPrimaryKey tableName="customer"/>
@@ -308,7 +302,7 @@
                 <primaryKeyExists tableName="product" />
             </not>
         </preConditions>
-        <addPrimaryKey tableName="product" columnNames="product_id" />
+        <addPrimaryKey tableName="product" columnNames="id" />
         
         <rollback>
             <dropPrimaryKey tableName="product"/>
@@ -321,7 +315,7 @@
                 <primaryKeyExists tableName="special_offer" />
             </not>
         </preConditions>
-        <addPrimaryKey tableName="special_offer" columnNames="special_offer_id" />
+        <addPrimaryKey tableName="special_offer" columnNames="id" />
         
         <rollback>
             <dropPrimaryKey tableName="special_offer"/>
@@ -360,7 +354,7 @@
                 <primaryKeyExists tableName="invoice" />
             </not>
         </preConditions>
-        <addPrimaryKey tableName="invoice" columnNames="invoice_id" />
+        <addPrimaryKey tableName="invoice" columnNames="id" />
         
         <rollback>
             <dropPrimaryKey tableName="invoice"/>
@@ -373,7 +367,7 @@
                 <primaryKeyExists tableName="storage" />
             </not>
         </preConditions>
-        <addPrimaryKey tableName="storage" columnNames="storage_id" />
+        <addPrimaryKey tableName="storage" columnNames="id" />
         
         <rollback>
             <dropPrimaryKey tableName="storage"/>
@@ -391,7 +385,7 @@
         <addForeignKeyConstraint baseColumnNames="customer_id"
         baseTableName="order"
         constraintName="order_customer_fk"
-        referencedColumnNames="customer_id"
+        referencedColumnNames="id"
         referencedTableName="customer"/>
         
         <rollback>
@@ -408,7 +402,7 @@
         <addForeignKeyConstraint baseColumnNames="product_id"
         baseTableName="order_detail"
         constraintName="order_detail_product_fk"
-        referencedColumnNames="product_id"
+        referencedColumnNames="id"
         referencedTableName="product"/>
         
         <rollback>
@@ -442,7 +436,7 @@
         <addForeignKeyConstraint baseColumnNames="special_offer_id"
         baseTableName="order_detail"
         constraintName="order_detail_special_offer_fk"
-        referencedColumnNames="special_offer_id"
+        referencedColumnNames="id"
         referencedTableName="special_offer"/>
         
         <rollback>
@@ -459,7 +453,7 @@
         <addForeignKeyConstraint baseColumnNames="product_id"
         baseTableName="product_in_shipment"
         constraintName="product_in_shipment_product_fk"
-        referencedColumnNames="product_id"
+        referencedColumnNames="id"
         referencedTableName="product"/>
         
         <rollback>
@@ -493,7 +487,7 @@
         <addForeignKeyConstraint baseColumnNames="product_id"
         baseTableName="product_in_movement"
         constraintName="product_in_movement_product_fk"
-        referencedColumnNames="product_id"
+        referencedColumnNames="id"
         referencedTableName="product"/>
         
         <rollback>
@@ -510,7 +504,7 @@
         <addForeignKeyConstraint baseColumnNames="invoice_id"
         baseTableName="product_in_movement"
         constraintName="product_in_movement_invoice_fk"
-        referencedColumnNames="invoice_id"
+        referencedColumnNames="id"
         referencedTableName="invoice"/>
         
         <rollback>
@@ -527,7 +521,7 @@
         <addForeignKeyConstraint baseColumnNames="original_storage_id"
         baseTableName="invoice"
         constraintName="invoice_storage_fk"
-        referencedColumnNames="storage_id"
+        referencedColumnNames="id"
         referencedTableName="storage"/>
         
         <rollback>
@@ -544,7 +538,7 @@
         <addForeignKeyConstraint baseColumnNames="final_storage_id"
         baseTableName="invoice"
         constraintName="invoice_storage_fkv2"
-        referencedColumnNames="storage_id"
+        referencedColumnNames="id"
         referencedTableName="storage"/>
         
         <rollback>
