@@ -25,8 +25,8 @@ CREATE TABLE order_detail (
     order_number       INTEGER NOT NULL,
     product_id         INTEGER NOT NULL,
     quantity           INTEGER NOT NULL,
-    price        MONEY NOT NULL,
-    special_offer_id   INTEGER NOT NULL
+    price              NUMERIC NOT NULL,
+    special_offer_id   INTEGER
 );
 
 ALTER TABLE order_detail ADD CONSTRAINT order_detail_pk PRIMARY KEY ( id );
@@ -35,7 +35,7 @@ CREATE TABLE product (
     id      INTEGER NOT NULL,
     name    CHAR(100) NOT NULL,
     type    CHAR(100) NOT NULL,
-    price   MONEY NOT NULL
+    price   NUMERIC NOT NULL
 );
 
 ALTER TABLE product ADD CONSTRAINT product_pk PRIMARY KEY ( id );
@@ -50,7 +50,7 @@ ALTER TABLE special_offer ADD CONSTRAINT special_offer_pk PRIMARY KEY ( id );
 
 CREATE TABLE product_in_shipment (
     id             INTEGER NOT NULL,
-    id             INTEGER NOT NULL,
+    shipment_id             INTEGER NOT NULL,
     quantity       INTEGER NOT NULL,
     product_id     INTEGER NOT NULL,
     order_number   INTEGER NOT NULL

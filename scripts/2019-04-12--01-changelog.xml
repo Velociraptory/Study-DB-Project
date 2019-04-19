@@ -87,11 +87,11 @@
             <column name="quantity" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="order_price" type="MONEY">
+            <column name="order_price" type="NUMERIC">
                 <constraints nullable="false" />
             </column>
             <column name="special_offer_id" type="INTEGER">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
         </createTable>
         
@@ -116,7 +116,7 @@
             <column name="type" type="CHAR(100)">
                 <constraints nullable="false" />
             </column>
-            <column name="price" type="MONEY">
+            <column name="price" type="NUMERIC">
                 <constraints nullable="false" />
             </column>
         </createTable>
