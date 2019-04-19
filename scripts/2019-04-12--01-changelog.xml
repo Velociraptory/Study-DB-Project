@@ -58,7 +58,7 @@
             <column name="order_date" type="DATE">
                 <constraints nullable="false" />
             </column>
-            <column name="shipment_day" type="DATE">
+            <column name="shipment_date" type="DATE">
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -87,7 +87,7 @@
             <column name="quantity" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="order_price" type="NUMERIC">
+            <column name="price" type="NUMERIC">
                 <constraints nullable="false" />
             </column>
             <column name="special_offer_id" type="INTEGER">
