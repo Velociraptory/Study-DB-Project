@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+    
+    <changeSet id="1" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="customer" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="customer">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="first_name" type="CHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="CHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="phone" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="city" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="address" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="zip" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="bank_inf" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="customer"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="2" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="order" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="order">
+            <column name="order_number" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="customer_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="order_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="shipment_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="order"/>
+        </rollback>
+        </changeSet>
+    
+    <changeSet id="3" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="order_detail" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="order_detail">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="order_number" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="product_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="price" type="NUMERIC">
+                <constraints nullable="false" />
+            </column>
+            <column name="special_offer_id" type="INTEGER">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="order_detail"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="4" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="product" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="price" type="NUMERIC">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="product"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="5" author="george" runOnChange="true"><preConditions>
+        <not>
+            <tableExists tableName="special_offer" schemaName="public"/>
+        </not>
+    </preConditions>
+        <createTable tableName="special_offer">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="CHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="discount" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="special_offer"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="6" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="product_in_shipment" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product_in_shipment">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="shipment_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="product_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="order_number" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="product_in_shipment"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="7" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="product_in_movement" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product_in_movement">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="product_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="invoice_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="product_in_movement"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="8" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="invoice" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="invoice">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="movement_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="original_storage_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="final_storage_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="invoice"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="9" author="george" runOnChange="true">
+        <preConditions>
+            <not>
+                <tableExists tableName="storage" schemaName="public"/>
+            </not>
+        </preConditions>
+        <createTable tableName="storage">
+            <column name="id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="CHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="city" type="CHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="address" type="CHAR(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="storage"/>
+        </rollback>
+    </changeSet>
+    
+    
+    
+    <changeSet id="10" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="customer" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="customer" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="customer"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="11" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="order" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="order" columnNames="order_number" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="order"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="12" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="order_detail" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="order_detail" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="order_detail"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="13" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="product" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="product" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="product"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="14" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="special_offer" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="special_offer" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="special_offer"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="15" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="product_in_shipment" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="product_in_shipment" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="product_in_shipment"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="16" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="product_in_movement" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="product_in_movement" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="product_in_movement"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="17" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="invoice" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="invoice" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="invoice"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="18" author="george" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <primaryKeyExists tableName="storage" />
+            </not>
+        </preConditions>
+        <addPrimaryKey tableName="storage" columnNames="id" />
+        
+        <rollback>
+            <dropPrimaryKey tableName="storage"/>
+        </rollback>
+    </changeSet>
+    
+    
+    
+    <changeSet id="19" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="order_customer_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+        baseTableName="order"
+        constraintName="order_customer_fk"
+        referencedColumnNames="id"
+        referencedTableName="customer"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="order" constraintName="order_customer_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="20" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="order_detail_product_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="product_id"
+        baseTableName="order_detail"
+        constraintName="order_detail_product_fk"
+        referencedColumnNames="id"
+        referencedTableName="product"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_product_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="21" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="order_detail_order_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="order_number"
+        baseTableName="order_detail"
+        constraintName="order_detail_order_fk"
+        referencedColumnNames="order_number"
+        referencedTableName="order"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_order_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="22" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="order_detail_special_offer_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="special_offer_id"
+        baseTableName="order_detail"
+        constraintName="order_detail_special_offer_fk"
+        referencedColumnNames="id"
+        referencedTableName="special_offer"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="order_detail" constraintName="order_detail_special_offer_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="23" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="product_in_shipment_product_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="product_id"
+        baseTableName="product_in_shipment"
+        constraintName="product_in_shipment_product_fk"
+        referencedColumnNames="id"
+        referencedTableName="product"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="product_in_shipment" constraintName="product_in_shipment_product_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="24" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="product_in_shipment_order_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="order_number"
+        baseTableName="product_in_shipment"
+        constraintName="product_in_shipment_order_fk"
+        referencedColumnNames="order_number"
+        referencedTableName="order"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="product_in_shipment" constraintName="product_in_shipment_order_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="25" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="product_in_movement_product_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="product_id"
+        baseTableName="product_in_movement"
+        constraintName="product_in_movement_product_fk"
+        referencedColumnNames="id"
+        referencedTableName="product"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="product_in_movement" constraintName="product_in_movement_product_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="26" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="product_in_movement_invoice_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="invoice_id"
+        baseTableName="product_in_movement"
+        constraintName="product_in_movement_invoice_fk"
+        referencedColumnNames="id"
+        referencedTableName="invoice"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="product_in_movement" constraintName="product_in_movement_invoice_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="27" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="invoice_storage_fk" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="original_storage_id"
+        baseTableName="invoice"
+        constraintName="invoice_storage_fk"
+        referencedColumnNames="id"
+        referencedTableName="storage"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="invoice" constraintName="invoice_storage_fk"/>
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="28" author="george">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="invoice_storage_fkv2" />
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="final_storage_id"
+        baseTableName="invoice"
+        constraintName="invoice_storage_fkv2"
+        referencedColumnNames="id"
+        referencedTableName="storage"/>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="invoice" constraintName="invoice_storage_fkv2"/>
+        </rollback>
+    </changeSet>
+    </databaseChangeLog>
