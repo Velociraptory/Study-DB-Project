@@ -40,7 +40,7 @@ JOIN "order" ord ON od.order_number = ord.order_number;
 SELECT * FROM product pr 
 LEFT JOIN order_detail od ON pr.id = od.product_id 
 WHERE pr.id IN('1', '2');
-8. сравнение продукта по показателям из предыдущего пункта с учетом специального предложения и без него - очень много данных о заказах
+8. сравнение продукта, по показателям из предыдущего пункта с учетом специального предложения и без него - очень много данных о заказах
 SELECT * FROM product pr 
 LEFT JOIN order_detail od ON pr.id = od.product_id 
 WHERE pr.id = '5' AND od.special_offer_id IS NULL OR  od.special_offer_id IS NOT NULL;
