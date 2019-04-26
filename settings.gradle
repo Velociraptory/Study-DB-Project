@@ -1,2 +1,3 @@
 rootProject.name = 'DBproject'
+include 'FunctionalTest'
 
