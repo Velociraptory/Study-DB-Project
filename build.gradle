@@ -25,13 +25,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile("org.springframework.boot:spring-boot-starter-web") //Support for full-stack web development, including Tomcat and spring-webmvc
-    // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator") //Production ready features to help you monitor and manage your application
-    // end::actuator[]
-    // tag::tests[]
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
     testCompile("org.springframework.boot:spring-boot-starter-test") //Support for common test dependencies, including JUnit, Hamcrest and Mockito along with the spring-test module
-    // end::tests[]
 }
 
 //JAR: Модули EJB, содержащие корпоративные java beans (файлы классов) и дескриптор развертывания EJB, упаковываются в виде файлов JAR с расширением .jar extenstion
