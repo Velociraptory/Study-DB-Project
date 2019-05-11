@@ -20,10 +20,10 @@ public class HomeControllerTest {
 
     @Test
     public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(content()
+        mockMvc.perform(get("/")) //посылаем GET на тестируемый url
+                .andExpect(status().isOk()) //ожидание кода состояния 200
+                .andExpect(view().name("index")) //ожидание совпадения названия view
+                .andExpect(content() //ожидание соответствующего контента в view
                         .string(containsString("Welcome to...")));
     }
 }

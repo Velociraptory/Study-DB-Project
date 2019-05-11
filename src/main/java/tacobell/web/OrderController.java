@@ -11,7 +11,7 @@ import tacobell.Order;
 
 import javax.validation.Valid;
 
-@Slf4j
+@Slf4j //логгер предоставленный lombok
 @Controller
 @RequestMapping("/orders")
 public class OrderController {

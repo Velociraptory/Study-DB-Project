@@ -18,9 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
+@Slf4j //логгер предоставленный lombok
 @Controller
 @RequestMapping("/design")
+/** But unlike the Taco object in the session, you need the order to be present across multiple
+ requests so that you can create multiple tacos and add them to the order.
+ The class-level @SessionAttributes annotation specifies any model objects like
+ the order attribute that should be kept in session and available across multiple requests
+ (as i understood that: DesignTacoController and OrderController).*/
 @SessionAttributes("order")
 public class DesignTacoController {
 
@@ -30,10 +35,13 @@ public class DesignTacoController {
 
     @Autowired
     public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo) {
+        //injecting repositories via annotated construction
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
     }
 
+    /** As with the taco() method, the @ModelAttribute annotation on order() ensures
+     that an Order object will be created in the model*/
     @ModelAttribute(name = "taco")
     public Taco taco() {
         return new Taco();
@@ -44,12 +52,12 @@ public class DesignTacoController {
         return new Order();
     }
 
-    @GetMapping
-    public String showDesignForm(Model model) { //incapsulation app data with Model
+    @GetMapping //здесь обрабатываем GET
+    public String showDesignForm(Model model) { //инкапсуляция данных приложения с помощью модели
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepo.findAll().forEach(i -> ingredients.add(i)); //now we are have all ingredients from our ingredient repository
 
-       /** List<Ingredient> ingredients = Arrays.asList( //construct list of ingredients
+       /** List<Ingredient> ingredients = Arrays.asList( //hardcoded construct list of ingredients
                 new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
                 new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
                 new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
@@ -60,13 +68,13 @@ public class DesignTacoController {
                 new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
                 new Ingredient("SLSA", "Salsa", Type.SAUCE),
                 new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
-        ); **/
+        ); */
         Type[] types = Ingredient.Type.values();
         for (Type type : types) { //model construct (add list of ingredients for each type)
-            model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
+            model.addAttribute(type.toString().toLowerCase(), //формируем модель, где ключ это тип ингредиента
+                    filterByType(ingredients, type)); //а значение список ингредиентов этого типа
         }
-        model.addAttribute("design", new Taco());
+        model.addAttribute("design", new Taco()); //add designed taco to Model object
         return "design"; //returning "design",
                         //which is the logical name of the view that will be used to
                         //render the model to the browser
@@ -79,7 +87,9 @@ public class DesignTacoController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping //здесь обрабатываем POST
+    /**@ModelAttribute is indicate that it's value should come from the model
+    and that Spring MVC shouldn’t attempt to bind request parameters to it*/
     public String processDesign(@Valid @ModelAttribute("design") Taco design, Errors errors, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             return "design";
@@ -87,8 +97,8 @@ public class DesignTacoController {
 
         log.info("Processing design: " + design);
 
-        Taco saved = designRepo.save(design);
-        order.addDesign(saved);
+        Taco saved = designRepo.save(design); //save our designed taco to DB
+        //order.addDesign(saved); It then adds the Taco object to the Order that’s kept in the session.
 
         return "redirect:/orders/current";
     }
