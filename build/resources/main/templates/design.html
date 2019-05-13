@@ -13,7 +13,7 @@
         <div class="ingredient-group" id="wraps">
             <h3>Designate your wrap:</h3>
             <div th:each="ingredient : ${wrap}"> <!-- use the th:each attribute on the <div> tag to repeat rendering of the <div> once for each item in the collection found in the wrap request attribute -->
-                
+                <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/> <!-- <span> element uses th:text to replace the "INGREDIENT" placeholder text with the value of the ingredient’s name property -->
             </div>
         </div>

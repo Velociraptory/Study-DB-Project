@@ -90,7 +90,7 @@ public class DesignTacoController {
     @PostMapping //здесь обрабатываем POST
     /**@ModelAttribute is indicate that it's value should come from the model
     and that Spring MVC shouldn’t attempt to bind request parameters to it*/
-    public String processDesign(@Valid @ModelAttribute("design") Taco design, Errors errors, @ModelAttribute Order order) {
+    public String processDesign(@Valid @ModelAttribute ("design") Taco design, Errors errors, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             return "design";
         }
@@ -98,7 +98,7 @@ public class DesignTacoController {
         log.info("Processing design: " + design);
 
         Taco saved = designRepo.save(design); //save our designed taco to DB
-        //order.addDesign(saved); It then adds the Taco object to the Order that’s kept in the session.
+        order.addDesign(saved); //It then adds the Taco object to the Order that’s kept in the session.
 
         return "redirect:/orders/current";
     }
