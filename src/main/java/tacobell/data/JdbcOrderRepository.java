@@ -1,6 +1,7 @@
 package tacobell.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Repository
 public class JdbcOrderRepository implements OrderRepository {
     private SimpleJdbcInsert orderInserter;
@@ -62,7 +64,11 @@ public class JdbcOrderRepository implements OrderRepository {
         Using ObjectMapper to map an object into a Map is much easier than
         copying each property from the object into the Map*/
         Map<String, Object> values = objectMapper.convertValue(order, Map.class);
+
+        //values.put("id", 2); //setting order id
         values.put("placedAt", order.getPlacedAt()); //setting order date
+        log.info(values.toString()); //debugging
+
         /**save the order information to the Taco_Order table and
          return the database-generated ID as a Number object*/
         long orderId = orderInserter.executeAndReturnKey(values)
