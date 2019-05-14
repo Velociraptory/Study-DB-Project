@@ -13,6 +13,8 @@ import java.util.List;
 
 @Data
 @Entity
+/**order is a reserved word in SQL so we're specify that Order entities should
+ be persisted to a table named Taco_Order*/
 @Table(name="Taco_Order")
 public class Order {
     @Id
