@@ -10,10 +10,13 @@ import tacobell.Ingredient;
 import tacobell.Ingredient.Type;
 import tacobell.Order;
 import tacobell.Taco;
+import tacobell.User;
 import tacobell.data.IngredientRepository;
 import tacobell.data.TacoRepository;
+import tacobell.data.UserRepository;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,11 +36,14 @@ public class DesignTacoController {
 
     private TacoRepository designRepo;
 
+    private UserRepository userRepo;
+
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo) {
+    public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo, UserRepository userRepo) {
         //injecting repositories via annotated construction
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
+        this.userRepo = userRepo;
     }
 
     /** As with the taco() method, the @ModelAttribute annotation on order() ensures
@@ -53,7 +59,7 @@ public class DesignTacoController {
     }
 
     @GetMapping //здесь обрабатываем GET
-    public String showDesignForm(Model model) { //инкапсуляция данных приложения с помощью модели
+    public String showDesignForm(Model model, Principal principal) { //инкапсуляция данных приложения с помощью модели
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepo.findAll().forEach(i -> ingredients.add(i)); //now we are have all ingredients from our ingredient repository
 
@@ -74,7 +80,13 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(), //формируем модель, где ключ это тип ингредиента
                     filterByType(ingredients, type)); //а значение список ингредиентов этого типа
         }
+
         model.addAttribute("design", new Taco()); //add designed taco to Model object
+
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
+
         return "design"; //returning "design",
                         //which is the logical name of the view that will be used to
                         //render the model to the browser

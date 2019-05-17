@@ -17,6 +17,10 @@ import java.util.List;
  be persisted to a table named Taco_Order*/
 @Table(name="Taco_Order")
 public class Order {
+
+    @ManyToOne
+    private User user;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
