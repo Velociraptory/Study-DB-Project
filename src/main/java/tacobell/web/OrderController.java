@@ -30,21 +30,21 @@ public class OrderController {
     @GetMapping("/current")
     public String orderForm(@AuthenticationPrincipal User user,
                             @ModelAttribute Order order) {
-        /** if (order.getDeliveryName() == null) {
-            order.setDeliveryName(user.getFullname());
+         if (order.getName() == null) {
+            order.setName(user.getFullname());
         }
-        if (order.getDeliveryStreet() == null) {
-            order.setDeliveryStreet(user.getStreet());
+        if (order.getStreet() == null) {
+            order.setStreet(user.getStreet());
         }
-        if (order.getDeliveryCity() == null) {
-            order.setDeliveryCity(user.getCity());
+        if (order.getCity() == null) {
+            order.setCity(user.getCity());
         }
-        if (order.getDeliveryState() == null) {
-            order.setDeliveryState(user.getState());
+        if (order.getState() == null) {
+            order.setState(user.getState());
         }
-        if (order.getDeliveryZip() == null) {
-            order.setDeliveryZip(user.getZip());
-        } **/
+        if (order.getZip() == null) {
+            order.setZip(user.getZip());
+        }
 
         return "orderForm";
     }

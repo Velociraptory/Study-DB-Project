@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.List;
 /**order is a reserved word in SQL so we're specify that Order entities should
  be persisted to a table named Taco_Order*/
 @Table(name="Taco_Order")
-public class Order {
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ManyToOne
     private User user;

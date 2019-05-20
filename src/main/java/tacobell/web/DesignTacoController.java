@@ -48,8 +48,8 @@ public class DesignTacoController {
 
     /** As with the taco() method, the @ModelAttribute annotation on order() ensures
      that an Order object will be created in the model*/
-    @ModelAttribute(name = "taco")
-    public Taco taco() {
+    @ModelAttribute(name = "design")
+    public Taco design() {
         return new Taco();
     }
 
@@ -102,14 +102,14 @@ public class DesignTacoController {
     @PostMapping //здесь обрабатываем POST
     /**@ModelAttribute is indicate that it's value should come from the model
     and that Spring MVC shouldn’t attempt to bind request parameters to it*/
-    public String processDesign(@Valid @ModelAttribute ("design") Taco design, Errors errors, @ModelAttribute Order order) {
+    public String processDesign(@Valid @ModelAttribute ("design") Taco taco, Errors errors, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             return "design";
         }
 
-        log.info("Processing design: " + design);
+        log.info("Processing design: " + taco);
 
-        Taco saved = designRepo.save(design); //save our designed taco to DB
+        Taco saved = designRepo.save(taco); //save our designed taco to DB
         order.addDesign(saved); //It then adds the Taco object to the Order that’s kept in the session.
 
         return "redirect:/orders/current";
