@@ -5,3 +5,6 @@ logging:
   file: tacobell.log
   level:
     root: INFO
+taco:
+  orders:
+    pageSize: 1
