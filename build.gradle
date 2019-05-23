@@ -1,3 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -7,18 +16,9 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
 bootJar {
     baseName = 'DBproject'
     version =  '0.1.0'
-}
-
-repositories {
-    mavenCentral()
 }
 
 sourceCompatibility = 1.8
@@ -35,6 +35,9 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.4.RELEASE'
     compile group: 'com.h2database', name: 'h2', version: '1.3.148'
     //compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
     testCompile("org.springframework.boot:spring-boot-starter-test") //Support for common test dependencies, including JUnit, Hamcrest and Mockito along with the spring-test module
 }
 

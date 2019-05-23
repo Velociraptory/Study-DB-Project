@@ -1,10 +1,5 @@
 server:
   port: 9090
-logging:
-  path: /var/logs/
-  file: tacobell.log
-  level:
-    root: INFO
 taco:
   orders:
     pageSize: 1
