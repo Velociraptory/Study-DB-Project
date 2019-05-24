@@ -9,7 +9,7 @@
         <file>logs/log.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>exampleApp.%d{dd-MM-yyyy}.%i.log</fileNamePattern>
-            <maxFileSize>2KB</maxFileSize> <!-- rollover after log oversizing -->
+            <maxFileSize>10MB</maxFileSize> <!-- rollover after log oversizing -->
             <maxHistory>1</maxHistory> <!-- rollover after 1 day -->
             <totalSizeCap>50MB</totalSizeCap> <!-- but at most 50MB -->
         </rollingPolicy>

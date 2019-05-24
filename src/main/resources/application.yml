@@ -3,3 +3,7 @@ server:
 taco:
   orders:
     pageSize: 1
+management:
+  endpoint:
+    health:
+      show-details: always
