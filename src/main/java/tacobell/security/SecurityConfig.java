@@ -19,6 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+  /**  private static final String[] AUTH_LIST = {
+            // -- swagger ui
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/documentation/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };  **/
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -26,6 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/design", "/orders")
                 .access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**").access("permitAll")
+                //.antMatchers(AUTH_LIST).authenticated()
+                //.and()
+                //.httpBasic().authenticationEntryPoint(swaggerAuthenticationEntryPoint())
+
                 //end::authorizeRequests[]
 
                 .and()
@@ -57,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //tag::authorizeRequests[]
         //tag::customLoginPage[]
         ;
+
     }
     @Bean
     public PasswordEncoder encoder() {
@@ -73,4 +87,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder());
 
     }
+
+  /*  @Bean
+    public BasicAuthenticationEntryPoint swaggerAuthenticationEntryPoint() {
+        BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
+        entryPoint.setRealmName("Swagger Realm");
+        return entryPoint;
+    }  */
 }

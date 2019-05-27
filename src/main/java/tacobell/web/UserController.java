@@ -23,16 +23,21 @@ public class UserController {
         this.userRepo = userRepo;
     }
 
+    //@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "There is no such user")
+    public class ThereIsNoSuchUserException extends RuntimeException {
+    }
+
     @GetMapping//("{id}")
     public User get(@RequestParam(value = "id") long id) {
         log.info("Searching for user");
+        User user = userRepo.findById(id);
+        if (user == null) {
+            throw new ThereIsNoSuchUserException();
+        }
 
         //LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         //StatusPrinter.print(lc);
-
         //return userRepo.findByUsername(name);
-        return userRepo.findById(id);
+            return user;
     }
-
-
 }
