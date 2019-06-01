@@ -1,5 +1,7 @@
 package tacobell;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +21,14 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
 @RequiredArgsConstructor
+@JsonPropertyOrder({ "username", "id" })
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @JsonProperty("taco-user-name")
     private final String username;
     private final String password;
     private final String fullname;

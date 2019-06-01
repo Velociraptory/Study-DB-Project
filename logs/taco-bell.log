@@ -1,15 +1,5 @@
-29-05-2019 13:47:13.718 [Test worker] INFO  o.s.s.c.ThreadPoolTaskExecutor.initialize - Initializing ExecutorService 'applicationTaskExecutor'
-29-05-2019 13:47:14.190 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
-29-05-2019 13:47:15.091 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext.log - Initializing Spring TestDispatcherServlet ''
-29-05-2019 13:47:15.092 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet.initServletBean - Initializing Servlet ''
-29-05-2019 13:47:15.125 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet.initServletBean - Completed initialization in 32 ms
-29-05-2019 13:47:15.303 [Test worker] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper.start - Context refreshed
-29-05-2019 13:47:15.352 [Test worker] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper.start - Found 1 custom documentation plugin(s)
-29-05-2019 13:47:15.418 [Test worker] INFO  s.d.s.w.s.ApiListingReferenceScanner.scan - Scanning for api listing references
-29-05-2019 13:47:15.899 [Test worker] INFO  s.d.s.w.r.o.CachingOperationNameGenerator.startingWith - Generating unique operation named: getUsingGET_1
-29-05-2019 13:47:15.953 [Test worker] INFO  tacobell.HomeControllerTest.logStarted - Started HomeControllerTest in 17.816 seconds (JVM running for 20.685)
-29-05-2019 13:47:17.635 [Thread-7] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown - Shutting down ExecutorService 'applicationTaskExecutor'
-29-05-2019 13:47:17.653 [Thread-7] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
-29-05-2019 13:47:17.654 [Thread-7] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-29-05-2019 13:47:17.680 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
-29-05-2019 13:47:17.704 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-06-2019 18:29:24.955 [Thread-4] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown - Shutting down ExecutorService 'applicationTaskExecutor'
+01-06-2019 18:29:24.968 [Thread-4] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-06-2019 18:29:24.969 [Thread-4] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+01-06-2019 18:29:24.994 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-06-2019 18:29:24.999 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.

@@ -2,6 +2,7 @@ package tacobell.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping//("{id}")
-    public User get(@RequestParam(value = "id") long id) {
+    public ResponseEntity<User> get(@RequestParam(value = "id") long id) {
         log.info("Searching for user");
         User user = userRepo.findById(id);
         if (user == null) {
@@ -38,6 +39,11 @@ public class UserController {
         //LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         //StatusPrinter.print(lc);
         //return userRepo.findByUsername(name);
-            return user;
+
+        //return new ResponseEntity<>(user,  HttpStatus.OK);
+
+        return ResponseEntity.ok()
+                .header("Custom-Header", "foo")
+                .body(user);
     }
 }
