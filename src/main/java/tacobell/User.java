@@ -2,6 +2,7 @@ package tacobell;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
 @RequiredArgsConstructor
-@JsonPropertyOrder({ "username", "id" })
+@JsonPropertyOrder({ "username", "id" }) //new order of json atributes
+@JsonRootName(value = "Users") //wrapper
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
