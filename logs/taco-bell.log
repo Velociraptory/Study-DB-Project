@@ -1,4 +1,9 @@
-01-06-2019 19:00:01.827 [Thread-4] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
-01-06-2019 19:00:01.829 [Thread-4] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-01-06-2019 19:00:01.849 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
-01-06-2019 19:00:01.858 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+02-06-2019 18:17:06.077 [http-nio-8080-exec-10] INFO  tacobell.web.UserController.get - Searching for user
+02-06-2019 18:17:07.319 [http-nio-8080-exec-1] INFO  t.web.CustomResponseController.customResponse - [User(id=1, username=George, password=f33d2b2216d51727ae79afe656f0befb8ae99ad49627760e5e2e9ea96b94fe2e709c09a369c6b59b, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777, isAccountNonExpired=true)]
+02-06-2019 18:17:12.812 [http-nio-8080-exec-4] INFO  tacobell.web.UserController.get - Searching for user
+02-06-2019 18:17:13.952 [http-nio-8080-exec-6] INFO  t.web.CustomResponseController.customResponse - [User(id=1, username=George, password=f33d2b2216d51727ae79afe656f0befb8ae99ad49627760e5e2e9ea96b94fe2e709c09a369c6b59b, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777, isAccountNonExpired=true)]
+02-06-2019 18:17:22.038 [Thread-4] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown - Shutting down ExecutorService 'applicationTaskExecutor'
+02-06-2019 18:17:22.046 [Thread-4] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+02-06-2019 18:17:22.047 [Thread-4] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+02-06-2019 18:17:22.058 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+02-06-2019 18:17:22.063 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.

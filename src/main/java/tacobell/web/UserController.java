@@ -1,5 +1,6 @@
 package tacobell.web;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tacobell.User;
 import tacobell.data.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -25,16 +29,21 @@ public class UserController {
     }
 
     //@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "There is no such user")
-    public class ThereIsNoSuchUserException extends RuntimeException {
+    public static class ThereIsNoSuchUserException extends RuntimeException {
     }
 
     @GetMapping//("{id}")
-    public ResponseEntity<User> get(@RequestParam(value = "id") long id) {
+    public ResponseEntity<List> get(@RequestParam(value = "id") long id) {
         log.info("Searching for user");
-        User user = userRepo.findById(id);
+        List<User> list = new ArrayList<>();
+        /* User user = userRepo.findById(id);
         if (user == null) {
             throw new ThereIsNoSuchUserException();
-        }
+        } else {
+            list.add(user);
+        } */
+
+        list = Lists.newArrayList(userRepo.findAll()); // Guava library
 
         //LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         //StatusPrinter.print(lc);
@@ -44,6 +53,6 @@ public class UserController {
 
         return ResponseEntity.ok()
                 .header("Custom-Header", "foo")
-                .body(user);
+                .body(list);
     }
 }
