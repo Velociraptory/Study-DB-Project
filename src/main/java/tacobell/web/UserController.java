@@ -4,10 +4,7 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tacobell.User;
 import tacobell.data.UserRepository;
 
@@ -32,9 +29,9 @@ public class UserController {
     public static class ThereIsNoSuchUserException extends RuntimeException {
     }
 
-    @GetMapping//("{id}")
-    public ResponseEntity<List> get(@RequestParam(value = "id") long id) {
-        log.info("Searching for user");
+    @GetMapping
+    public ResponseEntity<List> getAll() {
+        log.info("Searching for all users");
         List<User> list = new ArrayList<>();
         /* User user = userRepo.findById(id);
         if (user == null) {
@@ -50,6 +47,22 @@ public class UserController {
         //return userRepo.findByUsername(name);
 
         //return new ResponseEntity<>(user,  HttpStatus.OK);
+
+        return ResponseEntity.ok()
+                .header("Custom-Header", "foo")
+                .body(list);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<List> getById(@PathVariable long id) {
+        log.info("Searching for user by his id");
+        List<User> list = new ArrayList<>();
+         User user = userRepo.findById(id);
+        if (user == null) {
+            throw new ThereIsNoSuchUserException();
+        } else {
+            list.add(user);
+        }
 
         return ResponseEntity.ok()
                 .header("Custom-Header", "foo")

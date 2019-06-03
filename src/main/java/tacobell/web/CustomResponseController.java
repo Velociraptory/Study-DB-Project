@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tacobell.JsonReader;
 import tacobell.User;
@@ -30,7 +29,7 @@ public class CustomResponseController {
     }
 
     @GetMapping
-    ResponseEntity<List> customResponse(@RequestParam(value = "id") long id) {
+    ResponseEntity<List> customResponse() {
         //HttpHeaders headers = new HttpHeaders();
         //headers.add("Custom-Header", "foo");
 

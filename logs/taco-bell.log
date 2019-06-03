@@ -1,9 +1,9 @@
-02-06-2019 18:17:06.077 [http-nio-8080-exec-10] INFO  tacobell.web.UserController.get - Searching for user
-02-06-2019 18:17:07.319 [http-nio-8080-exec-1] INFO  t.web.CustomResponseController.customResponse - [User(id=1, username=George, password=f33d2b2216d51727ae79afe656f0befb8ae99ad49627760e5e2e9ea96b94fe2e709c09a369c6b59b, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777, isAccountNonExpired=true)]
-02-06-2019 18:17:12.812 [http-nio-8080-exec-4] INFO  tacobell.web.UserController.get - Searching for user
-02-06-2019 18:17:13.952 [http-nio-8080-exec-6] INFO  t.web.CustomResponseController.customResponse - [User(id=1, username=George, password=f33d2b2216d51727ae79afe656f0befb8ae99ad49627760e5e2e9ea96b94fe2e709c09a369c6b59b, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777, isAccountNonExpired=true)]
-02-06-2019 18:17:22.038 [Thread-4] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown - Shutting down ExecutorService 'applicationTaskExecutor'
-02-06-2019 18:17:22.046 [Thread-4] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
-02-06-2019 18:17:22.047 [Thread-4] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-02-06-2019 18:17:22.058 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
-02-06-2019 18:17:22.063 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+03-06-2019 14:49:42.254 [http-nio-8080-exec-7] INFO  t.web.CustomResponseController.customResponse - [User(id=1, username=George, password=0615596adfbf92cc341a73b532bbee63c8a5a74bb56f3664d3bdce5c0944595b51390ea263bd1652, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777), User(id=2, username=George, password=369b0376fd111574a8a61cf8ed74a398c2f5304b48adbb3b7891f132044701b759ab4d785242e831, fullname=tacotaco, street=once, city=told, state=me, zip=765456, phoneNumber=7777777)]
+03-06-2019 14:49:47.139 [http-nio-8080-exec-9] INFO  tacobell.web.UserController.getById - Searching for user by his id
+03-06-2019 14:49:49.815 [http-nio-8080-exec-10] INFO  tacobell.web.UserController.getById - Searching for user by his id
+03-06-2019 14:49:57.480 [http-nio-8080-exec-2] INFO  tacobell.web.UserController.getById - Searching for user by his id
+03-06-2019 14:50:03.522 [Thread-4] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown - Shutting down ExecutorService 'applicationTaskExecutor'
+03-06-2019 14:50:03.528 [Thread-4] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+03-06-2019 14:50:03.529 [Thread-4] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl.perform - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+03-06-2019 14:50:03.541 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+03-06-2019 14:50:03.547 [Thread-4] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
